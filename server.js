@@ -1,7 +1,6 @@
-import http from 'http';
+const http = require("http");
 
-const server = http.createServer((req, res) => {
-});
+const server = http.createServer((req, res) => {});
 
 const port = 3000;
 
