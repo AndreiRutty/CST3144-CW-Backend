@@ -1,9 +1,9 @@
 const { MongoClient } = require("mongodb");
 const courses = require("./courses.js");
 
-const url = "mongodb://localhost:27017";
+const url = "mongodb://localhost:27017"; // connection string
 
-const dbName = "eduexplorerDB";
+const dbName = "eduexplorerDB"; // database name
 
 createDatabase = async () => {
   const client = new MongoClient(url);
@@ -12,6 +12,7 @@ createDatabase = async () => {
     await client.connect();
 
     const db = client.db(dbName);
+    console.log(`Connection to ${dbName} established`);
 
     const coursesCollection = db.collection("courses");
 
@@ -23,4 +24,4 @@ createDatabase = async () => {
   }
 };
 
-createDatabase();
+createDatabase()
