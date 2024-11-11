@@ -60,14 +60,14 @@ const courses = [
     subject: "Computer Science",
     location: "Lab 1",
     price: 140,
-    spaces: 3,
+    spaces: 5,
   },
   {
     courseId: 10,
     subject: "Biology",
     location: "Room 8",
     price: 115,
-    spaces: 2,
+    spaces: 5,
   },
 ];
 

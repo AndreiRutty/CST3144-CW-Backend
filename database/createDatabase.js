@@ -14,9 +14,13 @@ createDatabase = async () => {
     const db = client.db(dbName);
     console.log(`Connection to ${dbName} established`);
 
+    // Creating course collection and inserting the courses data in it
     const coursesCollection = db.collection("courses");
-
     await coursesCollection.insertMany(courses);
+
+    // Creating order collection
+    const orderCollection = db.collection("order");
+
   } catch (err) {
     console.log(`Error: ${err}`);
   } finally {
