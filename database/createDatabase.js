@@ -1,7 +1,7 @@
 const { MongoClient } = require("mongodb");
 const courses = require("./courses.js");
 
-const url = "mongodb://localhost:27017"; // connection string
+const url = "mongodb://localhost:27017/"; // connection string
 
 const dbName = "eduexplorerDB"; // database name
 
