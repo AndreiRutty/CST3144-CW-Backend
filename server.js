@@ -2,6 +2,8 @@ const express = require("express");
 const { connectToMongoDB } = require("./database/db.js");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const fs = require("fs");
+
 const app = express();
 const port = 3000;
 
@@ -18,7 +20,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(logger);
 
 // Static File Middleware
-app.use(express.static("icons"));
+app.use("/courses/images/", express.static("icons"));
+
+app.use("/courses/images/:image", (req, res, next) => {
+  const img = `./icons/${req.params.image}`;
+
+  try {
+    fs.access(img, fs.constants.F_OK);
+    res.send(`${img} found!`);
+  } catch {
+    res.status(404).send(`${img} not found!`);
+  }
+});
 
 // Getting all courses
 app.get("/courses", async (req, res) => {
@@ -62,10 +75,7 @@ app.put("/courses/:id", async (req, res) => {
 
     const result = await db
       .collection("courses")
-      .updateOne(
-        { _id: id },
-        { $set: req.body }
-      );
+      .updateOne({ _id: id }, { $set: req.body });
   } catch (err) {
     console.log(`Error: ${err}`);
   }
