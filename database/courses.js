@@ -1,7 +1,7 @@
 const courses = [
   {
     _id: "M101",
-    subject: "Math",
+    subject: "Maths",
     location: "Room 1",
     price: 100,
     spaces: 5,
@@ -29,7 +29,7 @@ const courses = [
     location: "Room 4",
     price: 95,
     spaces: 5,
-    img: "icons/history.jpeg"
+    img: "icons/history.png"
   },
   {
     _id: "G101",
@@ -53,23 +53,23 @@ const courses = [
     location: "Room 7",
     price: 130,
     spaces: 5,
-    img: "icons/music.jpeg"
+    img: "icons/music.png"
   },
   {
     _id: "PE101",
-    subject: "Physical Education",
+    subject: "Physical-Education",
     location: "Gym",
     price: 80,
     spaces: 5,
-    img: "icons/p.e.png"
+    img: "icons/physical-education.png"
   },
   {
     _id: "CS101",
-    subject: "Computer Science",
+    subject: "Computer-Science",
     location: "Lab 1",
     price: 140,
     spaces: 5,
-    img: "icons/cs.png"
+    img: "icons/computer-science.png"
   },
   {
     _id: "B101",
