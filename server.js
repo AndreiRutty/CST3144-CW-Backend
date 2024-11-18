@@ -3,9 +3,10 @@ const { connectToMongoDB } = require("./database/db.js");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const fs = require("fs");
+require("dotenv").config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 // Logger Middleware
 const logger = (req, res, next) => {
@@ -26,9 +27,11 @@ app.use("/courses/images/:image", (req, res, next) => {
   const img = `./icons/${req.params.image}`;
 
   try {
+    // Check if the image exists
     fs.access(img, fs.constants.F_OK);
     res.send(`${img} found!`);
   } catch {
+    // If image doesn't exist, send 404 status and error message
     res.status(404).send(`${img} not found!`);
   }
 });
@@ -49,6 +52,32 @@ app.get("/courses", async (req, res) => {
   }
 });
 
+// getting a specific course based on search query
+app.get("/search", async (req, res) => {
+  try {
+    const query = req.query.q;
+
+    // Connecting to DB
+    const db = await connectToMongoDB();
+
+    const filteredCourses = await db
+      .collection("courses")
+      .find({
+        $or: [
+          { subject: { $regex: query, $options: "i" } },
+          { location: { $regex: query, $options: "i" } },
+          { price: query },
+          { spaces: query },
+        ],
+      })
+      .toArray();
+
+    res.json(filteredCourses);
+  } catch (err) {
+    console.log(`Error: ${err}`);
+  }
+});
+
 app.post("/order", async (req, res) => {
   try {
     // Connecting to DB
@@ -58,9 +87,9 @@ app.post("/order", async (req, res) => {
     const newOrder = req.body;
 
     // Insert order in order collection
-    const updatedField = await db.collection("order").insertOne(newOrder);
+    const newField = await db.collection("order").insertOne(newOrder);
 
-    res.json(updatedField.value);
+    res.json(newField.value);
   } catch (err) {
     console.log(`Error: ${err}`);
   }
@@ -71,8 +100,10 @@ app.put("/courses/:id", async (req, res) => {
     // Connecting to DB
     const db = await connectToMongoDB();
 
+    // Getting course id from url
     const id = req.params.id;
 
+    // Update course attribute with the request body value
     const result = await db
       .collection("courses")
       .updateOne({ _id: id }, { $set: req.body });

@@ -1,10 +1,13 @@
 const { MongoClient } = require("mongodb");
 const courses = require("./courses.js");
+require("dotenv").config();
 
-const url = "mongodb://localhost:27017/"; // connection string
+const url = process.env.DB_URL; // connection string
 
-const dbName = "eduexplorerDB"; // database name
+const dbName = process.env.DB_NAME; // database name
 
+
+// Function to create the database with its collection
 createDatabase = async () => {
   const client = new MongoClient(url);
 
@@ -18,9 +21,8 @@ createDatabase = async () => {
     const coursesCollection = db.collection("courses");
     await coursesCollection.insertMany(courses);
 
-    // Creating order collection
+    // Creating order collection with no fields
     const orderCollection = db.collection("order");
-
   } catch (err) {
     console.log(`Error: ${err}`);
   } finally {
@@ -28,4 +30,4 @@ createDatabase = async () => {
   }
 };
 
-createDatabase()
+createDatabase();
