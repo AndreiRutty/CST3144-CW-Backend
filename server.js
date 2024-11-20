@@ -87,9 +87,11 @@ app.post("/order", async (req, res) => {
     const newOrder = req.body;
 
     // Insert order in order collection
-    const newField = await db.collection("order").insertOne(newOrder);
+    const result = await db.collection("order").insertOne(newOrder);
 
-    res.json(newField.value);
+    if (!result) return res.status(400).json({ message: "Order not created" });
+
+    res.status(200).json({ message: `Order successfully submitted` });
   } catch (err) {
     console.log(`Error: ${err}`);
   }
@@ -106,7 +108,15 @@ app.put("/courses/:id", async (req, res) => {
     // Update course attribute with the request body value
     const result = await db
       .collection("courses")
-      .updateOne({ _id: id }, { $set: req.body });
+      .updateOne({ _id: id }, { $set: req.body }, { returnOriginal: false });
+
+    // Returning error message when
+    if (!result) return res.status(404).json({ message: "Course not found" });
+
+    // Retuning the updated course
+    res
+      .status(200)
+      .json({ message: `Successfully updated the course attribute` });
   } catch (err) {
     console.log(`Error: ${err}`);
   }
