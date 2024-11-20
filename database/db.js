@@ -1,7 +1,7 @@
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 
-const url = "mongodb+srv://andreiruttyar20:andrei1234@cluster0.mdcf8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0;"
+const url = "mongodb+srv://andreiruttyar20:andrei1234@cluster0.mdcf8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 const dbName = "eduexplorerDB"; // database name
 
 
