@@ -1,8 +1,8 @@
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 
-const url = process.env.DB_URL; // connection string
-const dbName = process.env.DB_NAME; // database name
+const url = "mongodb+srv://andreiruttyar20:andrei1234@cluster0.mdcf8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0;"
+const dbName = "eduexplorerDB"; // database name
 
 
 // Function to connect to mongoDB database

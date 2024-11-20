@@ -6,7 +6,7 @@ const fs = require("fs");
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT;
+const port = 3000;
 
 // Logger Middleware
 const logger = (req, res, next) => {
