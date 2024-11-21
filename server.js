@@ -66,7 +66,7 @@ app.get("/search", async (req, res) => {
         $or: [
           { subject: { $regex: query, $options: "i" } },
           { location: { $regex: query, $options: "i" } },
-          { price: isNaN(Number(query)) ? undefined : Number(query) }, // Number match
+          { price: { $regex: query, $options: "i" } }, // Number match
           { spaces: isNaN(Number(query)) ? undefined : Number(query) },
         ],
       })

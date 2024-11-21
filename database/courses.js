@@ -3,7 +3,7 @@ const courses = [
     _id: "M101",
     subject: "Maths",
     location: "Hendon Room 1",
-    price: 100,
+    price: "£100",
     spaces: 5,
     img: "icons/maths.png"
   },
@@ -11,7 +11,7 @@ const courses = [
     _id: "E101",
     subject: "English",
     location: "Enfield Room 1",
-    price: 90,
+    price: "£90",
     spaces: 5,
     img: "icons/english.png"
   },
@@ -19,7 +19,7 @@ const courses = [
     _id: "S101",
     subject: "Science",
     location: "Hendon Lab 1",
-    price: 110,
+    price: "£110",
     spaces: 5,
     img: "icons/science.png"
   },
@@ -27,7 +27,7 @@ const courses = [
     _id: "H101",
     subject: "History",
     location: "Enfield Room 2",
-    price: 95,
+    price: "£95",
     spaces: 5,
     img: "icons/history.png"
   },
@@ -35,7 +35,7 @@ const courses = [
     _id: "G101",
     subject: "Geography",
     location: "Enfield Room 3",
-    price: 85,
+    price: "£85",
     spaces: 5,
     img: "icons/geography.png"
   },
@@ -43,7 +43,7 @@ const courses = [
     _id: "A101",
     subject: "Art",
     location: "Bounds Green Room 1",
-    price: 120,
+    price: "£120",
     spaces: 5,
     img: "icons/art.png"
   },
@@ -51,7 +51,7 @@ const courses = [
     _id: "M102",
     subject: "Music",
     location: "Bounds Green Room 2",
-    price: 130,
+    price: "£130",
     spaces: 5,
     img: "icons/music.png"
   },
@@ -59,7 +59,7 @@ const courses = [
     _id: "PE101",
     subject: "Physical-Education",
     location: "Gym",
-    price: 80,
+    price: "£80",
     spaces: 5,
     img: "icons/physical-education.png"
   },
@@ -67,7 +67,7 @@ const courses = [
     _id: "CS101",
     subject: "Computer-Science",
     location: "Hendon Lab 2",
-    price: 140,
+    price: "£140",
     spaces: 5,
     img: "icons/computer-science.png"
   },
@@ -75,7 +75,7 @@ const courses = [
     _id: "B101",
     subject: "Biology",
     location: "Hendon Lab 3",
-    price: 115,
+    price: "£115",
     spaces: 5,
     img: "icons/biology.png"
   },
