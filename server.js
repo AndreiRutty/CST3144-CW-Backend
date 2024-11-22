@@ -45,12 +45,29 @@ app.get("/courses", async (req, res) => {
     // Getting courses
     const courses = await db.collection("courses").find({}).toArray();
 
-    // Sending courses in JSON to client
+    // Sending courses to client
     res.json(courses);
   } catch (err) {
     console.log(`Error: ${err}`);
   }
 });
+
+// Getting all orders
+app.get("/orders", async (req, res) => {
+  try{
+    // Connecting to DB
+    const db = await connectToMongoDB();
+
+    // Getting the orders
+    const orders = await db.collection("orders").find({}).toArray();
+
+    // Sending orders to client
+    res.json(orders)
+  }
+  catch(err){
+    console.log(`Error: ${err}`)
+  }
+})
 
 // getting a specific course based on search query
 app.get("/search", async (req, res) => {
@@ -78,7 +95,7 @@ app.get("/search", async (req, res) => {
   }
 });
 
-app.post("/order", async (req, res) => {
+app.post("/orders", async (req, res) => {
   try {
     // Connecting to DB
     const db = await connectToMongoDB();
@@ -87,7 +104,7 @@ app.post("/order", async (req, res) => {
     const newOrder = req.body;
 
     // Insert order in order collection
-    const result = await db.collection("order").insertOne(newOrder);
+    const result = await db.collection("orders").insertOne(newOrder);
 
     if (!result) return res.status(400).json({ message: "Order not created" });
 
